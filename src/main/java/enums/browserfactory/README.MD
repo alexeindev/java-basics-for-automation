@@ -110,14 +110,7 @@ browser-factory-enum/
         <artifactId>selenium-java</artifactId>
         <version>4.27.0</version>
     </dependency>
-
-    <!-- WebDriverManager -->
-    <dependency>
-        <groupId>io.github.bonigarcia</groupId>
-        <artifactId>webdrivermanager</artifactId>
-        <version>5.10.0</version>
-    </dependency>
-
+    
     <!-- TestNG -->
     <dependency>
         <groupId>org.testng</groupId>
