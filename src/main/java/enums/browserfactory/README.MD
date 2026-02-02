@@ -40,11 +40,6 @@ Browser factories are the foundation of any Selenium framework. Without a centra
     - Case-insensitive matching
     - Throws `IllegalArgumentException` with clear message for unsupported browsers
 
-6. Add WebDriverManager integration:
-    - Automatically manage browser drivers using WebDriverManager
-    - Call appropriate setup method before driver instantiation
-    - Example: `WebDriverManager.chromedriver().setup()`
-
 ## ✅ Acceptance Criteria
 
 1. All three browsers (`CHROME`, `FIREFOX`, `EDGE`) are implemented as enum constants with working `createDriver()` methods

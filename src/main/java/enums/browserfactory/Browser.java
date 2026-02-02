@@ -3,25 +3,36 @@ package enums.browserfactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
 import java.time.Duration;
 
 public enum Browser {
-    CHROME, FIREFOX, EDGE;
+    CHROME, FIREFOX, SAFARI;
 
 
     public WebDriver createDriver() {
         WebDriver driver = switch (this) {
             case CHROME -> new ChromeDriver(getChromeOptions());
             case FIREFOX -> new FirefoxDriver(getFirefoxOptions());
-            case EDGE -> new EdgeDriver(getEdgeOptions());
+            case SAFARI -> new SafariDriver(getSafariOptions());
         };
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return driver;
+    }
+
+    public static Browser fromString(String browserName) {
+        //Should be static to be used without an instance yet
+        return switch (browserName.toLowerCase()) {
+            case "chrome" -> Browser.CHROME;
+            case "firefox" -> Browser.FIREFOX;
+            case "safari" -> Browser.SAFARI;
+            default -> throw new IllegalArgumentException("Unsupported browser: '" + browserName +
+                    "'. Supported browsers: chrome, firefox, edge");
+        };
     }
 
     private ChromeOptions getChromeOptions() {
@@ -38,10 +49,10 @@ public enum Browser {
         return options;
     }
 
-    private EdgeOptions getEdgeOptions() {
-        EdgeOptions options = new EdgeOptions();
-        options.addArguments("--inprivate");
-        options.addArguments("--start-maximized");
+    private SafariOptions getSafariOptions() {
+        SafariOptions options = new SafariOptions();
+        options.setAutomaticInspection(false);
+        options.setUseTechnologyPreview(false);
         return options;
     }
 
